@@ -20,6 +20,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import cafe.adriel.voyager.transitions.FadeTransition
+import cafe.adriel.voyager.transitions.ScaleTransition
+import cafe.adriel.voyager.transitions.SlideTransition
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -29,7 +32,11 @@ import kmpnavigator.composeapp.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
-    Navigator(screen = MainScreen())
+    Navigator(screen = MainScreen()){ navigator ->
+        //SlideTransition(navigator)
+        //FadeTransition(navigator)
+        ScaleTransition(navigator)
+    }
 }
 class MainScreen : Screen {
     @Composable
