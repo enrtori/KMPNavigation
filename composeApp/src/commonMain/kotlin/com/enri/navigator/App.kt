@@ -3,6 +3,7 @@ package com.enri.navigator
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,7 +31,7 @@ import kmpnavigator.composeapp.generated.resources.compose_multiplatform
 fun App() {
     Navigator(screen = MainScreen())
 }
-class MainScreen: Screen{
+class MainScreen : Screen {
     @Composable
     override fun Content() {
         var navigator = LocalNavigator.currentOrThrow
@@ -48,16 +49,24 @@ class MainScreen: Screen{
             }
         }
     }
-class SecondScreen: Screen{
-    @Composable
-    override fun Content() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize().background(Color.Green), contentAlignment = Alignment.Center
-        ) {
-            Text("Welcome Second Page")
+
+    class SecondScreen : Screen {
+        @Composable
+        override fun Content() {
+            var navigator = LocalNavigator.currentOrThrow
+            Column(
+                modifier = Modifier
+                    .fillMaxSize().background(Color.Green),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+
+            ) {
+                Text("Welcome Second Page")
+                Button(onClick = { navigator.pop() }) {
+                    Text("Close")
+                }
+            }
         }
-    }
 
 }
 }
